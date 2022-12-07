@@ -1042,19 +1042,19 @@ if __name__ == '__main__' or __name__ == 'builtins':
                       if oneDate_df is None:
                         oneDate_df=oneRow_df.copy()
                       else:
-                        oneDate_df=oneDate_df.append(oneRow_df.copy())
+                        oneDate_df=pd.concat([oneDate_df, oneRow_df.copy()])  #oneDate_df=oneDate_df.append(oneRow_df.copy()) #avoid using deprecated method
                               
                   if not USE_DB:        
                     if oneBatch_df is None:
                       oneBatch_df=oneDate_df.copy() #higher loop is through dates, here only one date per series
                     else:
-                      oneBatch_df=oneBatch_df.append(oneDate_df.copy())
+                      oneBatch_df=pd.concat([oneBatch_df, oneDate_df.copy()]) #oneBatch_df=oneBatch_df.append(oneDate_df.copy())  #avoid using deprecated method
                           
             if not USE_DB and iEpoch>=FIRST_EPOCH_TO_START_SAVING_FORECASTS:    
               if forecast_df is None:
                 forecast_df=oneBatch_df.copy()
               else:
-                forecast_df=forecast_df.append(oneBatch_df.copy())
+                forecast_df=pd.concat([forecast_df, oneBatch_df.copy()])  #forecast_df=forecast_df.append(oneBatch_df.copy()) #avoid using deprecated method
               #print(forecast_df.shape)
                         
         numOfUpdatesSoFar+=1          

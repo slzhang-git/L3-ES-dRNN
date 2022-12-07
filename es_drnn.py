@@ -682,7 +682,9 @@ if __name__ == '__main__' or __name__ == 'builtins':
     exit(-1)
   
   if not USE_DB:
-    outputDir=OUTPUT_DIR+RUN_SHORT+"/"
+    outputDir_suffix=OUTPUT_DIR+RUN_SHORT+"/"  #outputDir=OUTPUT_DIR+RUN_SHORT+"/" directory settings revision
+    outputDir_prefix=os.getcwd()  #directory settings revision
+    outputDir=os.path.join(outputDir_prefix, outputDir_suffix)  #directory settings revision
     if workerNumber==1:
       dirExists = os.path.exists(outputDir)
       if not dirExists:

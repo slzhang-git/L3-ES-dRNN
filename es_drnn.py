@@ -211,7 +211,7 @@ a_df=train_df.iloc[-TESTING_WARMUP_STEPS*STEP_SIZE:,:]
 a_df.shape
 type(train_df)
 type(a_df)
-test1_df=a_df.append(test_df,ignore_index=True)
+test1_df=pd.concat([a_df, test_df]) #test1_df=a_df.append(test_df,ignore_index=True)  #avoid using deprecated method
 test1_df.shape
 test1_df.head(5)
 

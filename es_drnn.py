@@ -55,7 +55,7 @@ else:
   USE_ODBC=False
   USE_POSTGRESS=False
   USE_MySQL=False    
-  OUTPUT_DIR="/output/"
+  OUTPUT_DIR="output/" #OUTPUT_DIR="/output/" # directory settings revision
      
 from typing import List, Tuple, Optional  
 import random

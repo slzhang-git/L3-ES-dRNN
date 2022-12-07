@@ -633,10 +633,12 @@ def validationLossFunc(forec, actuals, maseNormalizer):
   
   #center
   diff=forec[:,0:OUTPUT_WINDOW]-actuals
-  rmse=np.sqrt(np.nanmean(diff*diff, axis=1))
-  mase=np.nanmean(abs(diff), axis=1)/maseNormalizer
-  mape=np.nanmean(abs(diff/actuals), axis=1)
-  bias=np.nanmean(diff/actuals, axis=1)
+  with warnings.catch_warnings():   # ignore useless and annoying warnings
+    warnings.filterwarnings(action='ignore', message='Mean of empty slice')
+    rmse=np.sqrt(np.nanmean(diff*diff, axis=1))
+    mase=np.nanmean(abs(diff), axis=1)/maseNormalizer
+    mape=np.nanmean(abs(diff/actuals), axis=1)
+    bias=np.nanmean(diff/actuals, axis=1)
   
   ret[:,0]=rmse
   ret[:,1]=bias
